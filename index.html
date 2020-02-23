@@ -92,23 +92,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>该程序主要是用strcmp()函数来确定两个字符串的顺序。一般的做法是读取字符串函数、排列字符串并打印出来。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读入字符串，并排序字符串</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 81	<span class="comment">// 限制字符串长度，包括\0</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIM 20	<span class="comment">// 可读入的最多行数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HALT <span class="meta-string">" "</span>	<span class="comment">// 空字符串停止输入</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stsrt</span><span class="params">(<span class="keyword">char</span> * strings [], <span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">s_gets</span><span class="params">(<span class="keyword">char</span> * st, <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> input[LIM][SIZE];	<span class="comment">// 储存输入的数组</span></span><br><span class="line">	<span class="keyword">char</span> *ptstr[LIM];	<span class="comment">// 内含指针变量的数组</span></span><br><span class="line">	<span class="keyword">int</span> ct = <span class="number">0</span>;	<span class="comment">// 输入计数</span></span><br><span class="line">	<span class="keyword">int</span> k;	<span class="comment">// 输出计数</span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Input up to %d lines, and I will sort them.\n"</span>, LIM);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"To stop, press the Enter key at a line's start.\n"</span>);</span><br><span class="line">	<span class="keyword">while</span> (ct &lt; LIM &amp;&amp; s_gets(input[ct], SIZE) != <span class="literal">NULL</span></span><br><span class="line">			&amp;&amp; input[ct][<span class="number">0</span>] != <span class="string">'\0'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		ptstr[ct] = input[ct];	<span class="comment">// 设置指针指向字符串</span></span><br><span class="line">		ct++;</span><br><span class="line">	&#125;</span><br><span class="line">	stsrt(ptstr, ct);	<span class="comment">// 字符串排序函数</span></span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">"\nHere's the sorted list:\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; ct; k++)</span><br><span class="line">		<span class="built_in">puts</span>(ptstr[k]);	<span class="comment">// 排序后的指针</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串-指针-排列函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stsrt</span><span class="params">(<span class="keyword">char</span> * strings [], <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> *temp;</span><br><span class="line">	<span class="keyword">int</span> top, <span class="built_in">seek</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (top = <span class="number">0</span>; top &lt; num - <span class="number">1</span>; top++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="built_in">seek</span> = top + <span class="number">1</span>; <span class="built_in">seek</span> &lt; num; <span class="built_in">seek</span>++)</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">strcmp</span>(strings[top], strings[<span class="built_in">seek</span>]) &gt; <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					temp = strings[top];</span><br><span class="line">					strings[top] = strings[<span class="built_in">seek</span>];</span><br><span class="line">					strings[<span class="built_in">seek</span>] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">s_gets</span><span class="params">(<span class="keyword">char</span> * st, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> * ret_val;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	ret_val = fgets(st, n, <span class="built_in">stdin</span>);</span><br><span class="line">	<span class="keyword">if</span> (ret_val)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (st[i] != <span class="string">'\n'</span> &amp;&amp; st[i] != <span class="string">'\n'</span>)</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="string">'\n'</span>)</span><br><span class="line">			st[i] = <span class="string">'\0'</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">while</span> (getchar() != <span class="string">'\n'</span>)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret_val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/02/23/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/R.png" alt="运行结果"></p>
-<ul>
-<li><p>排列指针而非字符串</p>
-<p>  该程序的巧妙之处在于排序的是指向字符串的指针，而不是字符串本身。最初，ptrst[0]被设置为input[0]，ptrst[1]被设置为input[1]，以此    类推。这意味着指针ptrst[i]指向数组input[i]的首字符。每个input[i]都    是一个内含81个元素的数组，每个ptrst[i]都是一个单独的变量。排序    过程把ptrst重新排序，并未改变input。例如，如果按字母顺序        input[1]在input[0]前面，程序便交换指向它们的指针(即ptrst[0]指向    input[1]的开始，而ptrst[1]指向input[0]的开始)。这样做比用        strcpy()交换两个input字符串的内容简单得多，而且还保留了input数    组中的原始顺序。</p>
-</li>
-<li><p>选择排序算法</p>
-<p>  我们采用<strong>选择排序法</strong>来排序指针。具体做法是，利用for循环依次把每个元素与首元素比较。如果待比较的元素在当前首元素的前面，则交换两者。循环结束时，首元素包含的指针指向机器排序序列最靠前的字符串。然后外层for循环重复这一过程，这次从input的第2个元素开始。当内层循环执行完毕时，ptrst中的第2个元素指向排在第2的字符串。这一过程持续到所有元素都已排序完毕。</p>
-</li>
-</ul>
-
+        <p>字符串示例：字符串排序</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/02/23/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/23/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" data-id="ck6yoiqow0008ngy08rrz1hxs" class="article-share-link" data-share="baidu" data-title="字符串排序">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/23/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" data-id="ck6yp1abm0008ncy0h4uv7z54" class="article-share-link" data-share="baidu" data-title="字符串排序">分享到</a>
       
 
       
@@ -159,7 +153,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/21/%E9%9C%87%E6%83%8A%EF%BC%81%E9%9D%A2%E5%AF%B9%E5%BC%80%E6%9C%BA%E5%90%8E%E7%9A%84%E5%BC%B9%E7%AA%97%E5%B9%BF%E5%91%8A%EF%BC%8C%E5%B0%8F%E4%BC%99%E5%AD%90%E7%AB%9F%E2%80%A6%E2%80%A6/" data-id="ck6yoiqow0009ngy0ftuu15mz" class="article-share-link" data-share="baidu" data-title="震惊！面对开机后的弹窗广告，小伙子竟……">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/21/%E9%9C%87%E6%83%8A%EF%BC%81%E9%9D%A2%E5%AF%B9%E5%BC%80%E6%9C%BA%E5%90%8E%E7%9A%84%E5%BC%B9%E7%AA%97%E5%B9%BF%E5%91%8A%EF%BC%8C%E5%B0%8F%E4%BC%99%E5%AD%90%E7%AB%9F%E2%80%A6%E2%80%A6/" data-id="ck6yp1abm0009ncy0b0kw55zw" class="article-share-link" data-share="baidu" data-title="震惊！面对开机后的弹窗广告，小伙子竟……">分享到</a>
       
 
       
@@ -210,7 +204,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/19/PDF%E9%98%85%E8%AF%BB%E5%99%A8%E6%8E%A8%E8%8D%90/" data-id="ck6yoiqog0005ngy0da45apd8" class="article-share-link" data-share="baidu" data-title="PDF阅读器推荐">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/19/PDF%E9%98%85%E8%AF%BB%E5%99%A8%E6%8E%A8%E8%8D%90/" data-id="ck6yp1ab60005ncy0dav7aqnb" class="article-share-link" data-share="baidu" data-title="PDF阅读器推荐">分享到</a>
       
 
       
@@ -261,7 +255,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-id="ck6yoiqog0006ngy00sb415hd" class="article-share-link" data-share="baidu" data-title="字符串函数">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/" data-id="ck6yp1ab60006ncy079d84xgm" class="article-share-link" data-share="baidu" data-title="字符串函数">分享到</a>
       
 
       
@@ -312,7 +306,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/14/CodeBlocks%E9%85%8D%E7%BD%AE%E7%AE%80%E5%8D%95python%E7%8E%AF%E5%A2%83/" data-id="ck6yoiqo00001ngy0477n048o" class="article-share-link" data-share="baidu" data-title="CodeBlocks配置简单python环境">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/14/CodeBlocks%E9%85%8D%E7%BD%AE%E7%AE%80%E5%8D%95python%E7%8E%AF%E5%A2%83/" data-id="ck6yp1aar0001ncy0dhkm9paa" class="article-share-link" data-share="baidu" data-title="CodeBlocks配置简单python环境">分享到</a>
       
 
       
@@ -363,7 +357,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/14/PC%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" data-id="ck6yoiqog0002ngy0c2fle30m" class="article-share-link" data-share="baidu" data-title="PC压缩软件推荐">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/14/PC%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" data-id="ck6yp1ab60002ncy03ez5hoej" class="article-share-link" data-share="baidu" data-title="PC压缩软件推荐">分享到</a>
       
 
       
@@ -414,7 +408,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://bige-cyz.github.io/2020/02/13/PC%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8E%A8%E8%8D%90/" data-id="ck6yoiqog0004ngy0cfsbdymn" class="article-share-link" data-share="baidu" data-title="PC浏览器推荐">分享到</a>
+        <a data-url="https://bige-cyz.github.io/2020/02/13/PC%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8E%A8%E8%8D%90/" data-id="ck6yp1ab60004ncy05zye5zos" class="article-share-link" data-share="baidu" data-title="PC浏览器推荐">分享到</a>
       
 
       
